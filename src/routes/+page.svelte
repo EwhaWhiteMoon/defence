@@ -6,25 +6,12 @@
 <input type="checkbox" bind:checked={t} />
 
 <br />
-<div>
-	<CardView disabled={t}></CardView>
-	<CardView disabled={t}></CardView>
-	<CardView disabled={t}></CardView>
-	<CardView disabled={t}></CardView>
-	<CardView disabled={t}></CardView>
-	<CardView disabled={t}></CardView>
-</div>
-<div>
-	<CardView disabled={t}></CardView>
-	<CardView disabled={t}></CardView>
-	<CardView disabled={t}></CardView>
-	<CardView disabled={t}></CardView>
-	<CardView disabled={t}></CardView>
+<div class="hand">
 	<CardView disabled={t}></CardView>
 </div>
 
 <style>
-	div {
+	div.hand {
 		display: flex;
 		justify-content: space-evenly;
 		padding: 1em;
