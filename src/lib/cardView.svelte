@@ -94,12 +94,14 @@
 	button:disabled {
 		translate: 0 -2px;
 		box-shadow: 0 2px 2px gray;
-		background: lightgray;
 	}
 
 	span {
 		position: absolute;
 		font-size: 1rem;
+		transition:
+			background-color ease-out 0.1s,
+			color ease-out 0.1s;
 	}
 
 	span.name {
@@ -166,6 +168,16 @@
 
 	button:disabled img {
 		filter: grayscale(100%);
+	}
+
+	button:disabled span {
+		border-color: gray;
+	}
+
+	button:disabled .mana,
+	button:disabled .value,
+	button:disabled .atk {
+		background-color: gray;
 	}
 
 	@keyframes change-border {

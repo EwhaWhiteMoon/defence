@@ -3,6 +3,8 @@ import { Card, CardPosition } from '$lib/card';
 export class Game {
 	cards: Array<Card> = [];
 	res: [number, number] = [0, 0];
+	mana: number = 0;
+	map: Map<[number, number], Card> = new Map();
 
 	constructor() {}
 
@@ -29,14 +31,22 @@ export class Game {
 	}
 
 	discardCard(card: Card): void {
-		card.position = CardPosition.used;
+		if (!card.cardData.onDiscard?.(this, card)) card.position = CardPosition.used;
 	}
 
 	discardHand(): void {
 		this.cards.filter((c) => c.position == CardPosition.hand).forEach((c) => this.discardCard(c));
 	}
 
+	checkAvailability(card: Card): boolean {
+		return card.cardData.canUse(this, card);
+	}
+
+	useCard(card: Card): void {
+		if (!card.cardData.onUse?.(this, card)) card.position = CardPosition.used;
+	}
+
 	removeCard(card: Card): void {
-		this.cards = this.cards.filter((c) => c !== card);
+		if (!card.cardData.onDistroy?.(this, card)) this.cards = this.cards.filter((c) => c !== card);
 	}
 }
